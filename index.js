@@ -30,6 +30,16 @@ app.get("/getuser", (req, res) => {
     })
 })
 
+app.get("/getuser/:emailId", (req, res) => {
+    // const email = req.params.emailId
+    // console.log(email)
+    const sql = `Select * from employee where email = "${req.params.emailId}"`
+    db.query(sql, (err, result) => {
+         if(err) console.log(err.sqlMessage)
+            else res.json(result)
+    })
+})
+
 
 app.listen(PORT, ()=> {
     console.log(`Server is running on port http://localhost:${PORT}`)
